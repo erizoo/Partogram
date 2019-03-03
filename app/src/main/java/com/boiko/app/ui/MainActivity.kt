@@ -1,6 +1,7 @@
 package com.boiko.app.ui
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.boiko.app.R
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initRecyclerView()
 
+        Snackbar.make(recycler, resources.configuration.smallestScreenWidthDp.toString(), Snackbar.LENGTH_LONG).show()
     }
 
     private fun initRecyclerView() {

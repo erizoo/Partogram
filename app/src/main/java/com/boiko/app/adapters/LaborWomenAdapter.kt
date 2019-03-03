@@ -18,9 +18,9 @@ class LaborWomenAdapter(items: List<String>) : BaseRecyclerViewAdapter<LaborWome
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var v = LayoutInflater.from(parent.context).inflate(R.layout.list_item_labor_women, parent, false)
-//        if (parent.resources.configuration.smallestScreenWidthDp >= 600) {
-//            v = LayoutInflater.from(parent.context).inflate(R.layout.list_item_labor_women_big, parent, false)
-//        }
+        if (parent.resources.configuration.smallestScreenWidthDp >= 600) {
+            v = LayoutInflater.from(parent.context).inflate(R.layout.list_item_labor_women_big, parent, false)
+        }
         return ViewHolder(v)
     }
 
