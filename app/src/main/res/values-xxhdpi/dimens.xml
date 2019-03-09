@@ -1,0 +1,8 @@
+<resources>
+	<dimen name="activity_vertical_margin">38.4dp</dimen>
+	<dimen name="activity_horizontal_margin">38.4dp</dimen>
+	<dimen name="activity_margin_vertically_default">38.4dp</dimen>
+	<dimen name="activity_margin_small">43.2dp</dimen>
+	<dimen name="activity_padding_default">38.4dp</dimen>
+	<dimen name="activity_margin_horizontally_default">38.4dp</dimen>
+</resources>

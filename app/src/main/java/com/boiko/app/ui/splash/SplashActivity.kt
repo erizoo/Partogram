@@ -21,7 +21,8 @@ class SplashActivity : BaseActivity(), SplashMvpView {
         screenComponent?.inject(this)
         presenter.onAttach(this)
 
-        presenter.checkToken()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     override fun getContentView(): Int {

@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.boiko.app.R
 import com.boiko.app.base.BaseRecyclerViewAdapter
-import kotlinx.android.synthetic.main.list_item_labor_women.view.*
+import kotlinx.android.synthetic.main.list_items_add_parametrs.view.*
 
-class LaborWomenAdapter(items: List<String>) : BaseRecyclerViewAdapter<LaborWomenAdapter.ViewHolder>() {
+class ParametersAdapter(items: List<String>) : BaseRecyclerViewAdapter<ParametersAdapter.ViewHolder>() {
 
-    private lateinit var callback: Callback
+    private lateinit var callback: ParametersAdapter.Callback
 
     override var items: List<String> = items
         set(value) {
@@ -19,7 +19,7 @@ class LaborWomenAdapter(items: List<String>) : BaseRecyclerViewAdapter<LaborWome
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var v = LayoutInflater.from(parent.context).inflate(R.layout.list_item_labor_women, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.list_items_add_parametrs, parent, false)
         return ViewHolder(v)
     }
 
@@ -29,11 +29,11 @@ class LaborWomenAdapter(items: List<String>) : BaseRecyclerViewAdapter<LaborWome
         holder.itemView.isClickable = false
     }
 
-    private fun setCallback(callback: Callback){
+    fun setCallback(callback: Callback) {
         this.callback = callback
     }
 
-    interface Callback{
+    interface Callback {
 
         fun openParameter(type: String)
 
@@ -41,13 +41,8 @@ class LaborWomenAdapter(items: List<String>) : BaseRecyclerViewAdapter<LaborWome
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: String) {
-            itemView.name.text = "Меркель И.О.  AB(IV) Rh+"
-            itemView.time_return.text = "Последнее изменение: 36 минут назад"
-            itemView.time_begin.text = "Время начала:   12.01.2019 15:35"
-            itemView.head.text = "Положение шейки матки и головки: 5/3 см"
-            itemView.age.text = "Возраст: 30 лет"
-            itemView.alarm.text = "3"
-            itemView.add.setOnClickListener{
+            itemView.title.text = item
+            itemView.title.setOnClickListener {
                 callback.openParameter("")
             }
         }
