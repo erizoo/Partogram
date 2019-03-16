@@ -3,6 +3,8 @@ package com.boiko.app.ui
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.InputFilter
+import android.view.View
 import android.widget.ArrayAdapter
 import com.boiko.app.R
 import com.github.mikephil.charting.data.Entry
@@ -17,6 +19,10 @@ class ParameterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parameter)
+
+        val type = intent.getStringExtra("TYPE")
+
+        initView(type)
 
         val i = (Date().time / 1000).toInt()
         val f = i.toFloat()
@@ -54,6 +60,17 @@ class ParameterActivity : AppCompatActivity() {
         adapterAmnioticFluidConfig.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         amniotic_fluid_config.adapter = adapterAmnioticFluidConfig
+    }
+
+    private fun initView(type: String?) {
+        if (type.equals("Сердцебиение плода")) {
+            edit_text2.visibility = View.GONE
+            edit_text.hint = "Введите количество ударов"
+            title_page.text = "Сердцебиение плода"
+            edit_text.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(3))
+        } else if(type.equals("Околоплодные воды и конфигурация")) {
+
+        }
     }
 
 }

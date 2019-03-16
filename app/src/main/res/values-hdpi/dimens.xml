@@ -6,9 +6,12 @@
 	<dimen name="activity_padding_default">19.2dp</dimen>
 	<dimen name="activity_margin_horizontally_default">19.2dp</dimen>
 
-	<dimen name="width_alarm">90dp</dimen>
-	<dimen name="height_alarm">50dp</dimen>
+	<dimen name="width_alarm">70dp</dimen>
+	<dimen name="height_alarm">35dp</dimen>
 
-	<dimen name="name_size">15sp</dimen>
+	<dimen name="name_size">14sp</dimen>
 	<dimen name="change_size">10sp</dimen>
+
+	<dimen name="title_size">190dp</dimen>
+
 </resources>

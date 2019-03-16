@@ -5,17 +5,19 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.boiko.app.R
-import com.boiko.app.adapters.ParametersAdapter
+import com.boiko.app.ui.adapters.ParametersAdapter
 import kotlinx.android.synthetic.main.activity_add.*
 
 class AddActivity : AppCompatActivity(), ParametersAdapter.Callback {
 
     private val parametersAdapter = ParametersAdapter(listOf())
+    private var id: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
         initRecyclerView()
+        val id = intent.get("ID")
     }
 
     private fun initRecyclerView() {
@@ -39,7 +41,10 @@ class AddActivity : AppCompatActivity(), ParametersAdapter.Callback {
     }
 
     override fun openParameter(type: String) {
-        startActivity(Intent(this@AddActivity, ParameterActivity::class.java))
+        val intent = Intent(this@AddActivity, ParameterActivity::class.java)
+        intent.putExtra("TYPE", type)
+        intent.putExtra("ID", id)
+        startActivity(intent)
     }
 
 }

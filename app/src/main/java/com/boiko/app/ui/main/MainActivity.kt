@@ -3,13 +3,13 @@ package com.boiko.app.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.boiko.app.R
-import com.boiko.app.adapters.LaborWomenAdapter
+import com.boiko.app.ui.adapters.LaborWomenAdapter
 import com.boiko.app.base.BaseActivity
 import com.boiko.app.data.models.ResponsePatient
 import com.boiko.app.ui.AddActivity
+import com.boiko.app.ui.ParameterActivity
 import com.boiko.app.utils.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.ResponseBody
@@ -35,7 +35,7 @@ class MainActivity : BaseActivity(), LaborWomenAdapter.Callback, MainActivityMvp
     private fun initRecyclerView(body: List<ResponsePatient>) {
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = laborWomenAdapter
-
+        laborWomenAdapter.setCallback(this)
         laborWomenAdapter.items = body
 
         recycler.addItemDecoration(
@@ -47,8 +47,10 @@ class MainActivity : BaseActivity(), LaborWomenAdapter.Callback, MainActivityMvp
         return R.layout.activity_main
     }
 
-    override fun openParameter(type: String) {
-        startActivity(Intent(this@MainActivity, AddActivity::class.java))
+    override fun openParameter(type: Int) {
+        val intent = Intent(this@MainActivity, AddActivity::class.java)
+        intent.putExtra("ID", type)
+        startActivity(intent)
     }
 
     override fun onError(errorBody: ResponseBody?) {

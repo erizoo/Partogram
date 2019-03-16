@@ -1,4 +1,4 @@
-package com.boiko.app.adapters
+package com.boiko.app.ui.adapters
 
 import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
@@ -31,27 +31,27 @@ class LaborWomenAdapter(items: List<ResponsePatient>) : BaseRecyclerViewAdapter<
         holder.itemView.isClickable = false
     }
 
-    private fun setCallback(callback: Callback){
+    fun setCallback(callback: Callback){
         this.callback = callback
     }
 
     interface Callback{
 
-        fun openParameter(type: String)
+        fun openParameter(type: Int)
 
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n")
         fun bind(item: ResponsePatient) {
-            itemView.name.text = item.fullName + "  " + item.bloodGroup
+            itemView.name.text = item.fullName + System.getProperty("line.separator") + item.bloodGroup
             itemView.time_return.text = "Последнее изменение: 36 минут назад"
             itemView.time_begin.text = "Время начала:  " + item.timeOfHospitalization
             itemView.head.text = "Положение шейки матки и головки: 5/3 см"
             itemView.age.text = "Возраст: " + item.age
             itemView.alarm.text = "3"
             itemView.add.setOnClickListener{
-                callback.openParameter("")
+                callback.openParameter(item.id)
             }
         }
     }

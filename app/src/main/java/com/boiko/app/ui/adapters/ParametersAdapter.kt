@@ -1,4 +1,4 @@
-package com.boiko.app.adapters
+package com.boiko.app.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -43,7 +43,7 @@ class ParametersAdapter(items: List<String>) : BaseRecyclerViewAdapter<Parameter
         fun bind(item: String) {
             itemView.title.text = item
             itemView.title.setOnClickListener {
-                callback.openParameter("")
+                callback.openParameter(item)
             }
         }
     }
