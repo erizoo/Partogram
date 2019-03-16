@@ -17,7 +17,7 @@ class AddActivity : AppCompatActivity(), ParametersAdapter.Callback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
         initRecyclerView()
-        val id = intent.get("ID")
+        val id = intent.getIntExtra("ID", 1)
     }
 
     private fun initRecyclerView() {
