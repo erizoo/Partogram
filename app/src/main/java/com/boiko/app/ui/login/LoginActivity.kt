@@ -6,7 +6,7 @@ import android.support.design.widget.Snackbar
 import android.view.View
 import com.boiko.app.R
 import com.boiko.app.base.BaseActivity
-import com.boiko.app.ui.MainActivity
+import com.boiko.app.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 

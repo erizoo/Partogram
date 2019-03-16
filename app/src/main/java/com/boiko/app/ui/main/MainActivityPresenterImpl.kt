@@ -1,4 +1,4 @@
-package com.boiko.app.ui.splash
+package com.boiko.app.ui.main
 
 import com.boiko.app.base.BasePresenter
 import com.boiko.app.data.RepositoryManager
@@ -7,23 +7,25 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class SplashPresenterImpl<V : SplashMvpView>
+class MainActivityPresenterImpl<V : MainActivityMvpView>
 @Inject
 constructor(repositoryManager: RepositoryManager, compositeDisposable: CompositeDisposable) :
-    BasePresenter<V>(repositoryManager, compositeDisposable), SplashPresenter<V> {
+    BasePresenter<V>(repositoryManager, compositeDisposable), MainActivityPresenter<V> {
 
-    override fun checkToken() {
+
+    override fun getPatient() {
         compositeDisposable.add(
-            repositoryManager.serviceNetwork.checkToken(repositoryManager.servicePrefs.userToken)
+            repositoryManager.serviceNetwork.getPatient(repositoryManager.servicePrefs.userToken)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {response ->
-                    if (response.isSuccessful){
-                        mvpView.isSuccessfulToken()
+                .subscribe {
+                    if (it.isSuccessful){
+                        mvpView.onSuccessPatient(it.body()!!)
                     } else {
-                        mvpView.badToken()
+                        mvpView.onError(it.errorBody())
                     }
                 }
         )
     }
+
 }

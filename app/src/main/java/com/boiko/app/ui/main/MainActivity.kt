@@ -1,4 +1,4 @@
-package com.boiko.app.ui
+package com.boiko.app.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,43 +7,56 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.boiko.app.R
 import com.boiko.app.adapters.LaborWomenAdapter
+import com.boiko.app.base.BaseActivity
+import com.boiko.app.data.models.ResponsePatient
+import com.boiko.app.ui.AddActivity
 import com.boiko.app.utils.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.list_item_labor_women.*
+import okhttp3.ResponseBody
+import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), LaborWomenAdapter.Callback{
+class MainActivity : BaseActivity(), LaborWomenAdapter.Callback, MainActivityMvpView{
 
     private val laborWomenAdapter = LaborWomenAdapter(listOf())
 
+    @Inject
+    internal lateinit var presenter: MainActivityPresenter<MainActivityMvpView>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        initRecyclerView()
+        screenComponent?.inject(this)
+        presenter.onAttach(this)
+        presenter.getPatient()
 
         Snackbar.make(recycler, resources.configuration.smallestScreenWidthDp.toString(), Snackbar.LENGTH_LONG).show()
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(body: List<ResponsePatient>) {
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = laborWomenAdapter
 
-        val offers = ArrayList<String>()
-        offers.add("Spraklin cair repair")
-        offers.add("Spraklin cair repair")
-        offers.add("Spraklin cair repair")
-        offers.add("Spraklin cair repair")
-        offers.add("Spraklin cair repair")
-        offers.add("Spraklin cair repair")
-        laborWomenAdapter.items = offers
+        laborWomenAdapter.items = body
 
         recycler.addItemDecoration(
             DividerItemDecoration(this, R.drawable.listing_margin_divider, true)
         )
     }
 
+    override fun getContentView(): Int {
+        return R.layout.activity_main
+    }
+
     override fun openParameter(type: String) {
         startActivity(Intent(this@MainActivity, AddActivity::class.java))
+    }
+
+    override fun onError(errorBody: ResponseBody?) {
+
+    }
+
+    override fun onSuccessPatient(body: List<ResponsePatient>) {
+        initRecyclerView(body)
     }
 
 }

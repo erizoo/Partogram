@@ -1,18 +1,20 @@
 package com.boiko.app.adapters
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.boiko.app.R
 import com.boiko.app.base.BaseRecyclerViewAdapter
+import com.boiko.app.data.models.ResponsePatient
 import kotlinx.android.synthetic.main.list_item_labor_women.view.*
 
-class LaborWomenAdapter(items: List<String>) : BaseRecyclerViewAdapter<LaborWomenAdapter.ViewHolder>() {
+class LaborWomenAdapter(items: List<ResponsePatient>) : BaseRecyclerViewAdapter<LaborWomenAdapter.ViewHolder>() {
 
     private lateinit var callback: Callback
 
-    override var items: List<String> = items
+    override var items: List<ResponsePatient> = items
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -40,12 +42,13 @@ class LaborWomenAdapter(items: List<String>) : BaseRecyclerViewAdapter<LaborWome
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: String) {
-            itemView.name.text = "Меркель И.О.  AB(IV) Rh+"
+        @SuppressLint("SetTextI18n")
+        fun bind(item: ResponsePatient) {
+            itemView.name.text = item.fullName + "  " + item.bloodGroup
             itemView.time_return.text = "Последнее изменение: 36 минут назад"
-            itemView.time_begin.text = "Время начала:   12.01.2019 15:35"
+            itemView.time_begin.text = "Время начала:  " + item.timeOfHospitalization
             itemView.head.text = "Положение шейки матки и головки: 5/3 см"
-            itemView.age.text = "Возраст: 30 лет"
+            itemView.age.text = "Возраст: " + item.age
             itemView.alarm.text = "3"
             itemView.add.setOnClickListener{
                 callback.openParameter("")

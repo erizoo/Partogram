@@ -4,4 +4,38 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="key_position" translatable="false">position</string>
+
+    <string-array name="amniotic_fluid">
+        <item>Выберите тип околоплодных вод</item>
+        <item>I</item>
+        <item>C</item>
+        <item>M</item>
+        <item>B</item>
+        <item>A</item>
+    </string-array>
+
+    <string-array name="amniotic_fluid_config">
+        <item>Выберите конфигурацию околоплодных вод</item>
+        <item>0</item>
+        <item>+</item>
+        <item>++</item>
+        <item>+++</item>
+    </string-array>
+
+    <string-array name="uterine_contractions">
+        <item>Введите количество маточных сокращений</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="intensity_contractions">
+        <item>Введите интенсивность сокращений</item>
+        <item>меньше 20</item>
+        <item>20 – 40</item>
+        <item>больше 40</item>
+    </string-array>
+
 </resources>

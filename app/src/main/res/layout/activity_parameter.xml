@@ -10,4 +10,77 @@
             android:layout_height="350dp"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/my_edit_text_border"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="20dp"
+            android:visibility="visible"
+            android:padding="10dp"
+            android:inputType="number"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+            android:id="@+id/edit_text2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/my_edit_text_border"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="20dp"
+            android:visibility="visible"
+            android:padding="10dp"
+            android:inputType="number"
+            app:layout_constraintTop_toBottomOf="@+id/edit_text"/>
+
+    <Button
+            android:id="@+id/abort"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Отмена"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guad_line"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Сохранить"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guad_line"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Spinner
+            android:id="@+id/amniotic_fluid"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <Spinner
+            android:id="@+id/amniotic_fluid_config"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/amniotic_fluid"/>
+
+    <android.support.constraint.Guideline
+            android:id="@+id/guad_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+
 </android.support.constraint.ConstraintLayout>

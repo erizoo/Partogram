@@ -1,10 +1,9 @@
 package com.boiko.app.ui
 
-import android.R.attr.x
-import android.R.attr.y
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.ArrayAdapter
 import com.boiko.app.R
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -20,7 +19,6 @@ class ParameterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_parameter)
 
         val i = (Date().time / 1000).toInt()
-        val i = (Date().time  / 1000).toInt()
         val f = i.toFloat()
 
         val entries = ArrayList<Entry>()
@@ -30,7 +28,7 @@ class ParameterActivity : AppCompatActivity() {
         entries.add(Entry(f, 45F))
 
         val dataSet = LineDataSet(entries, "Label")
-        dataSet.color = Color.BLUE;
+        dataSet.color = Color.BLUE
         dataSet.valueTextColor = Color.BLACK
 
 
@@ -40,6 +38,22 @@ class ParameterActivity : AppCompatActivity() {
 
         val xAxis = chart.xAxis
         xAxis.valueFormatter = MyXAxisValueFormatter()
+
+        abort.setOnClickListener {
+            onBackPressed()
+        }
+
+        val adapterAmnioticFluid =
+            ArrayAdapter.createFromResource(this, R.array.amniotic_fluid, android.R.layout.simple_spinner_item)
+        adapterAmnioticFluid.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        amniotic_fluid.adapter = adapterAmnioticFluid
+
+        val adapterAmnioticFluidConfig =
+            ArrayAdapter.createFromResource(this, R.array.amniotic_fluid_config, android.R.layout.simple_spinner_item)
+        adapterAmnioticFluidConfig.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        amniotic_fluid_config.adapter = adapterAmnioticFluidConfig
     }
 
 }
