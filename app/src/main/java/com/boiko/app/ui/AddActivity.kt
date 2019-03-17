@@ -6,18 +6,20 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.boiko.app.R
 import com.boiko.app.ui.adapters.ParametersAdapter
+import com.boiko.app.ui.parameter.ParameterActivity
 import kotlinx.android.synthetic.main.activity_add.*
 
 class AddActivity : AppCompatActivity(), ParametersAdapter.Callback {
 
     private val parametersAdapter = ParametersAdapter(listOf())
-    private var id: Int = 0
+    private var idLabor: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
         initRecyclerView()
         val id = intent.getIntExtra("ID", 1)
+        idLabor = id
     }
 
     private fun initRecyclerView() {
@@ -43,7 +45,7 @@ class AddActivity : AppCompatActivity(), ParametersAdapter.Callback {
     override fun openParameter(type: String) {
         val intent = Intent(this@AddActivity, ParameterActivity::class.java)
         intent.putExtra("TYPE", type)
-        intent.putExtra("ID", id)
+        intent.putExtra("ID", idLabor)
         startActivity(intent)
     }
 

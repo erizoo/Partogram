@@ -54,4 +54,5 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:2.17"
 
     implementation 'com.jjoe64:graphview:4.2.2'
+    implementation 'im.dacer:AndroidCharts:1.0.4'
 }

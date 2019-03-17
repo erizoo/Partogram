@@ -10,6 +10,9 @@ import com.boiko.app.ui.login.LoginPresenterImpl;
 import com.boiko.app.ui.main.MainActivityMvpView;
 import com.boiko.app.ui.main.MainActivityPresenter;
 import com.boiko.app.ui.main.MainActivityPresenterImpl;
+import com.boiko.app.ui.parameter.ParameterMvpView;
+import com.boiko.app.ui.parameter.ParameterPresenter;
+import com.boiko.app.ui.parameter.ParameterPresenterImpl;
 import com.boiko.app.ui.splash.SplashMvpView;
 import com.boiko.app.ui.splash.SplashPresenter;
 import com.boiko.app.ui.splash.SplashPresenterImpl;
@@ -57,6 +60,12 @@ public class ScreenModule {
     @Provides
     @PerScreen
     MainActivityPresenter<MainActivityMvpView> provideMainActivityPresenter(MainActivityPresenterImpl<MainActivityMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerScreen
+    ParameterPresenter<ParameterMvpView> provideParameterPresenter(ParameterPresenterImpl<ParameterMvpView> presenter) {
         return presenter;
     }
 

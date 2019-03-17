@@ -4,6 +4,7 @@ import com.boiko.app.di.PerScreen;
 import com.boiko.app.di.module.ScreenModule;
 import com.boiko.app.ui.login.LoginActivity;
 import com.boiko.app.ui.main.MainActivity;
+import com.boiko.app.ui.parameter.ParameterActivity;
 import com.boiko.app.ui.splash.SplashActivity;
 import dagger.Component;
 import org.jetbrains.annotations.NotNull;
@@ -17,4 +18,6 @@ public interface ScreenComponent {
     void inject(@NotNull SplashActivity activity);
 
     void inject(@NotNull MainActivity activity);
+
+    void inject(@NotNull ParameterActivity activity);
 }

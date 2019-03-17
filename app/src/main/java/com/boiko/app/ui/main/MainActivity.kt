@@ -9,7 +9,6 @@ import com.boiko.app.ui.adapters.LaborWomenAdapter
 import com.boiko.app.base.BaseActivity
 import com.boiko.app.data.models.ResponsePatient
 import com.boiko.app.ui.AddActivity
-import com.boiko.app.ui.ParameterActivity
 import com.boiko.app.utils.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.ResponseBody

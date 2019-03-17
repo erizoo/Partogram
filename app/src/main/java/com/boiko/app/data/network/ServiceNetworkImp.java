@@ -1,9 +1,8 @@
 package com.boiko.app.data.network;
 
-import com.boiko.app.data.models.RequestLogin;
-import com.boiko.app.data.models.ResponseLogin;
-import com.boiko.app.data.models.ResponsePatient;
+import com.boiko.app.data.models.*;
 import io.reactivex.Observable;
+import org.jetbrains.annotations.Nullable;
 import retrofit2.Response;
 
 import javax.inject.Inject;
@@ -40,5 +39,47 @@ public class ServiceNetworkImp implements ServiceNetwork {
     @Override
     public Observable<Response<List<ResponsePatient>>> getPatient(String userToken) {
         return apiMethods.getPatient(userToken);
+    }
+
+    @Override
+    public Observable<Response<ResponseStatus>> fetalHeartbeat(String userToken, Integer id, String edit_text, String format) {
+        RequestFetalHeartbeat requestFetalHeartbeat = new RequestFetalHeartbeat();
+        requestFetalHeartbeat.setId(id);
+        requestFetalHeartbeat.setBeatsPerSecond(Integer.valueOf(edit_text));
+        requestFetalHeartbeat.setTime(format);
+        return apiMethods.fetalHeartbeat(userToken, requestFetalHeartbeat);
+    }
+
+    @Override
+    public Observable<Response<List<ResponseFetalHeartbeat>>> getFetalHeartbeat(String userToken, Integer id) {
+        return apiMethods.getFetalHeartbeat(userToken, id);
+    }
+
+    @Override
+    public Observable<Response<List<ResponseFetalHeartbeat>>> getPulse(String userToken, Integer id) {
+        return apiMethods.getPulse(userToken, id);
+    }
+
+    @Override
+    public Observable<Response<ResponseStatus>> savePulse(String userToken, int id, String edit_text, String format) {
+        RequestFetalHeartbeat requestFetalHeartbeat = new RequestFetalHeartbeat();
+        requestFetalHeartbeat.setId(id);
+        requestFetalHeartbeat.setBeatsPerSecond(Integer.valueOf(edit_text));
+        requestFetalHeartbeat.setTime(format);
+        return apiMethods.fetalHeartbeat(userToken, requestFetalHeartbeat);
+    }
+
+    @Override
+    public Observable<Response<ResponseStatus>> saveTemp(String userToken, int id, String data, String format) {
+        RequestTemp requestTemp = new RequestTemp();
+        requestTemp.setId(id);
+        requestTemp.setTemperature(Double.valueOf(data));
+        requestTemp.setTime(format);
+        return apiMethods.saveTemp(userToken, requestTemp);
+    }
+
+    @Override
+    public Observable<Response<List<RequestTemp>>> getTemp(@Nullable String userToken, int idLabor) {
+        return apiMethods.getTemp(userToken, idLabor);
     }
 }
