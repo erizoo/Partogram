@@ -14,7 +14,6 @@ import com.boiko.app.utils.HelpForGraphics
 import com.jjoe64.graphview.DefaultLabelFormatter
 import kotlinx.android.synthetic.main.activity_parameter.*
 import okhttp3.ResponseBody
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -110,39 +109,45 @@ class ParameterActivity : BaseActivity(), ParameterMvpView {
 
     @SuppressLint("SimpleDateFormat")
     override fun onFetalHeartbeat(body: List<ResponseFetalHeartbeat>?) {
-        initGraph()
-        val dateBegin = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(0)?.time)
-        val dateFinal = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(body.size - 1)?.time)
-        graph.viewport.setMinX(dateBegin.time.toDouble())
-        graph.viewport.setMaxX(dateFinal.time.toDouble())
+        if (body!![0].id !== null) {
+            initGraph()
+            val dateBegin = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(0)?.time)
+            val dateFinal = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(body.size - 1)?.time)
+            graph.viewport.setMinX(dateBegin.time.toDouble())
+            graph.viewport.setMaxX(dateFinal.time.toDouble())
 
-        graph.addSeries(HelpForGraphics.getPoints(body))
-        graph.viewport.setMinY(0.0)
-        graph.viewport.setMaxY(200.0)
+            graph.addSeries(HelpForGraphics.getPoints(body))
+            graph.viewport.setMinY(0.0)
+            graph.viewport.setMaxY(200.0)
+        }
     }
 
     override fun onPulse(body: List<ResponseFetalHeartbeat>?) {
-        initGraph()
-        val dateBegin = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(0)?.time)
-        val dateFinal = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(body.size - 1)?.time)
-        graph.viewport.setMinX(dateBegin.time.toDouble())
-        graph.viewport.setMaxX(dateFinal.time.toDouble())
+        if (body!![0].id !== null) {
+            initGraph()
+            val dateBegin = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(0)?.time)
+            val dateFinal = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(body.size - 1)?.time)
+            graph.viewport.setMinX(dateBegin.time.toDouble())
+            graph.viewport.setMaxX(dateFinal.time.toDouble())
 
-        graph.addSeries(HelpForGraphics.getPoints(body))
-        graph.viewport.setMinY(60.0)
-        graph.viewport.setMaxY(180.0)
+            graph.addSeries(HelpForGraphics.getPoints(body))
+            graph.viewport.setMinY(60.0)
+            graph.viewport.setMaxY(180.0)
+        }
     }
 
     override fun onTemp(body: List<RequestTemp>?) {
-        initGraph()
-        val dateBegin = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(0)?.time)
-        val dateFinal = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(body.size - 1)?.time)
-        graph.viewport.setMinX(dateBegin.time.toDouble())
-        graph.viewport.setMaxX(dateFinal.time.toDouble())
+        if (body!![0].id !== null) {
+            initGraph()
+            val dateBegin = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(0)?.time)
+            val dateFinal = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(body?.get(body.size - 1)?.time)
+            graph.viewport.setMinX(dateBegin.time.toDouble())
+            graph.viewport.setMaxX(dateFinal.time.toDouble())
 
-        graph.addSeries(HelpForGraphics.getPointsTemp(body))
-        graph.viewport.setMinY(34.0)
-        graph.viewport.setMaxY(43.0)
+            graph.addSeries(HelpForGraphics.getPointsTemp(body))
+            graph.viewport.setMinY(34.0)
+            graph.viewport.setMaxY(43.0)
+        }
     }
 
     private fun initView(type: String?) {

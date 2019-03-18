@@ -148,4 +148,49 @@
             app:layout_constraintEnd_toEndOf="@id/partogram"
             app:layout_constraintTop_toBottomOf="@id/partogram"/>
 
+    <TextView
+            android:id="@+id/period_text_view"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="2-ой период родов"
+            android:textSize="8sp"
+            android:lines="2"
+            android:minLines="2"
+            android:singleLine="false"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="@id/period"
+            app:layout_constraintEnd_toEndOf="@id/period"
+            app:layout_constraintTop_toBottomOf="@id/period"/>
+
+    <TextView
+            android:id="@+id/table_text_view"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Таблица"
+            android:textSize="9sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="@id/table"
+            app:layout_constraintEnd_toEndOf="@id/table"
+            app:layout_constraintTop_toBottomOf="@id/table"/>
+
+    <TextView
+            android:id="@+id/call_text_view"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Вызов врача"
+            android:textSize="9sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="@id/call"
+            app:layout_constraintEnd_toEndOf="@id/call"
+            app:layout_constraintTop_toBottomOf="@id/call"/>
+
 </android.support.constraint.ConstraintLayout>

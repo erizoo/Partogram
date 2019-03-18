@@ -29,16 +29,16 @@ class AddActivity : AppCompatActivity(), ParametersAdapter.Callback {
 
         val offers = ArrayList<String>()
         offers.add("Сердцебиение плода")
-        offers.add("Околоплодные воды и конфигурация")
-        offers.add("Раскрытие шейки матки")
-        offers.add("Прохождение головки плода")
-        offers.add("Маточные сокращения каждые 10 минут")
-        offers.add("Окситоцин")
-        offers.add("Полученные лекарства и растворы")
-        offers.add("Пульс")
-        offers.add("Давление")
+//        offers.add("Околоплодные воды и конфигурация")
+//        offers.add("Раскрытие шейки матки")
+//        offers.add("Прохождение головки плода")
+//        offers.add("Маточные сокращения каждые 10 минут")
+//        offers.add("Окситоцин")
+//        offers.add("Полученные лекарства и растворы")
+//        offers.add("Пульс")
+//        offers.add("Давление")
         offers.add("Температура тела")
-        offers.add("Моча")
+//        offers.add("Моча")
         parametersAdapter.items = offers
     }
 
