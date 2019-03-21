@@ -38,4 +38,11 @@
         <item>больше 40</item>
     </string-array>
 
+    <string-array name="suppliers">
+        <item>HM</item>
+        <item>BV</item>
+        <item>Nixpro</item>
+        <item>Trade</item>
+    </string-array>
+
 </resources>

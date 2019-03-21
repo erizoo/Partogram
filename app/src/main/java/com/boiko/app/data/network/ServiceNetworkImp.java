@@ -1,6 +1,7 @@
 package com.boiko.app.data.network;
 
 import com.boiko.app.data.models.RequestLogin;
+import com.boiko.app.data.models.ResponseGoods;
 import com.boiko.app.data.models.ResponseLogin;
 import com.boiko.app.data.models.ResponsePatient;
 import io.reactivex.Observable;
@@ -40,5 +41,16 @@ public class ServiceNetworkImp implements ServiceNetwork {
     @Override
     public Observable<Response<List<ResponsePatient>>> getPatient(String userToken) {
         return apiMethods.getPatient(userToken);
+    }
+
+    @Override
+    public Observable<Response<List<ResponseGoods>>> getGoods(int id) {
+        if (id == 0) {
+            return apiMethods.getGoods("HM");
+        } else if (id == 1) {
+            return apiMethods.getGoods("bv");
+        }
+
+        return apiMethods.getGoods("HM");
     }
 }

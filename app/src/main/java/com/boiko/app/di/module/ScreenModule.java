@@ -4,9 +4,6 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import com.boiko.app.di.ActivityContext;
 import com.boiko.app.di.PerScreen;
-import com.boiko.app.ui.login.LoginMvpView;
-import com.boiko.app.ui.login.LoginPresenter;
-import com.boiko.app.ui.login.LoginPresenterImpl;
 import com.boiko.app.ui.main.MainActivityMvpView;
 import com.boiko.app.ui.main.MainActivityPresenter;
 import com.boiko.app.ui.main.MainActivityPresenterImpl;
@@ -40,12 +37,6 @@ public class ScreenModule {
     @Provides
     CompositeDisposable provideCompositeDisposable() {
         return new CompositeDisposable();
-    }
-
-    @Provides
-    @PerScreen
-    LoginPresenter<LoginMvpView> provideLoginPresenter(LoginPresenterImpl<LoginMvpView> presenter) {
-        return presenter;
     }
 
     @Provides

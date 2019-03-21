@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.boiko.app.R
 import com.boiko.app.base.BaseActivity
 import com.boiko.app.ui.main.MainActivity
-import com.boiko.app.ui.login.LoginActivity
 import javax.inject.Inject
 
 
@@ -32,7 +31,7 @@ class SplashActivity : BaseActivity(), SplashMvpView {
     }
 
     override fun badToken() {
-        startActivity(Intent(this, LoginActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 
