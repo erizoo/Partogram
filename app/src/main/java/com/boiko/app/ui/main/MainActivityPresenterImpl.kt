@@ -2,6 +2,7 @@ package com.boiko.app.ui.main
 
 import com.boiko.app.base.BasePresenter
 import com.boiko.app.data.RepositoryManager
+import com.boiko.app.data.models.RequestGoods
 import com.boiko.app.data.models.ResponseGoods
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -12,7 +13,6 @@ class MainActivityPresenterImpl<V : MainActivityMvpView>
 @Inject
 constructor(repositoryManager: RepositoryManager, compositeDisposable: CompositeDisposable) :
     BasePresenter<V>(repositoryManager, compositeDisposable), MainActivityPresenter<V> {
-
 
     override fun getGoods(id: String) {
         compositeDisposable.add(
@@ -43,4 +43,14 @@ constructor(repositoryManager: RepositoryManager, compositeDisposable: Composite
         print("")
     }
 
+    override fun sendDebit(request: RequestGoods) {
+        compositeDisposable.add(
+            repositoryManager.serviceNetwork.sendDebit(request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    mvpView.isSuccessfulSendedDebit(it)
+                }
+        )
+    }
 }

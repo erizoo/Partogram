@@ -11,8 +11,7 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import com.boiko.app.R
 import com.boiko.app.base.BaseActivity
-import com.boiko.app.data.models.ResponseGoods
-import com.boiko.app.data.models.ResponseSuppliers
+import com.boiko.app.data.models.*
 import com.boiko.app.ui.adapters.GoodsAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.ResponseBody
@@ -24,7 +23,6 @@ class MainActivity : BaseActivity(), GoodsAdapter.Callback, MainActivityMvpView 
     private var arrayAdapter: ArrayAdapter<String>? = null
     private var body: List<ResponseGoods> = emptyList()
     private var filterList: MutableList<ResponseGoods> = arrayListOf()
-
 
     @Inject
     internal lateinit var presenter: MainActivityPresenter<MainActivityMvpView>
@@ -46,11 +44,8 @@ class MainActivity : BaseActivity(), GoodsAdapter.Callback, MainActivityMvpView 
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>) {
-
             }
-
         }
-
         send_button.setOnClickListener {
             val list = goodsAdapter.items
             val listResult : MutableList<ResponseGoods> = arrayListOf()
@@ -60,6 +55,15 @@ class MainActivity : BaseActivity(), GoodsAdapter.Callback, MainActivityMvpView 
                 }
             }
             presenter.send(listResult)
+        }
+
+        debit_button.setOnClickListener {
+            val model : MutableList<RequestModel> = arrayListOf()
+            model.add(0, RequestModel(
+                "", "123456", "2015-05-07", "125",
+                "cash", "trade", "trade", "234"))
+            val request = RequestGoods(model)
+            presenter.sendDebit(request)
         }
     }
 
@@ -135,6 +139,10 @@ class MainActivity : BaseActivity(), GoodsAdapter.Callback, MainActivityMvpView 
 
     override fun save(item: ResponseGoods) {
 
+    }
+
+    override fun isSuccessfulSendedDebit(it: ResponseDebit?) {
+        print("")
     }
 
 }

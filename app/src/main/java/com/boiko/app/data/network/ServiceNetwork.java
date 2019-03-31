@@ -2,8 +2,6 @@ package com.boiko.app.data.network;
 
 import com.boiko.app.data.models.*;
 import io.reactivex.Observable;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import retrofit2.Response;
 
 import java.util.List;
@@ -19,4 +17,6 @@ public interface ServiceNetwork {
     Observable<ResponseTransit> getGoods();
 
     Observable<ResponseTransit> getSuppliers();
+
+    Observable<ResponseDebit> sendDebit(RequestGoods request);
 }

@@ -1,6 +1,7 @@
 package com.boiko.app.ui.main
 
 import com.boiko.app.base.MvpPresenter
+import com.boiko.app.data.models.RequestGoods
 import com.boiko.app.data.models.ResponseGoods
 
 interface MainActivityPresenter <V : MainActivityMvpView> : MvpPresenter<V> {
@@ -11,4 +12,5 @@ interface MainActivityPresenter <V : MainActivityMvpView> : MvpPresenter<V> {
 
     fun send(items: List<ResponseGoods>)
 
+    fun sendDebit(request: RequestGoods)
 }

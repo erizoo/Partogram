@@ -24,4 +24,9 @@ public interface ApiMethods {
 
     @GET("test_api_transit")
     Observable<ResponseTransit> getSuppliers();
+
+    @FormUrlEncoded
+    @POST("test_api_transit_to_stock")
+    Observable<ResponseDebit> sendDebit(@Header("Content-Type") String content,
+                                        @Field("skus") String request);
 }

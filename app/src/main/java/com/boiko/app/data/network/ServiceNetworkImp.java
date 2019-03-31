@@ -49,4 +49,9 @@ public class ServiceNetworkImp implements ServiceNetwork {
     public Observable<ResponseTransit> getSuppliers() {
         return apiMethods.getSuppliers();
     }
+
+    @Override
+    public Observable<ResponseDebit> sendDebit(RequestGoods request) {
+        return apiMethods.sendDebit("application/json", "11");
+    }
 }
