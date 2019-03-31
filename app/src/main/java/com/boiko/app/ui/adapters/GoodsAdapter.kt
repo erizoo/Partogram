@@ -38,6 +38,8 @@ class GoodsAdapter(items: List<ResponseGoods>) : BaseRecyclerViewAdapter<GoodsAd
     interface Callback {
 
         fun openParameter(type: Int)
+
+        fun save(item: ResponseGoods)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -45,8 +47,15 @@ class GoodsAdapter(items: List<ResponseGoods>) : BaseRecyclerViewAdapter<GoodsAd
         fun bind(item: ResponseGoods) {
             itemView.title.text = item.name
             itemView.amount.text = item.amount
-            if (item.sended) {
+            item.checked = false
+            if (item.sended == 1) {
                 itemView.title.setBackgroundColor(Color.YELLOW)
+            } else {
+                itemView.title.setBackgroundColor(Color.WHITE)
+            }
+            itemView.checkbox.setOnClickListener {
+                item.checked = itemView.checkbox.isChecked
+                callback.save(item)
             }
         }
     }

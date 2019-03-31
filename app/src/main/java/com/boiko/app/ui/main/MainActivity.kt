@@ -1,11 +1,9 @@
 package com.boiko.app.ui.main
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
@@ -14,16 +12,19 @@ import android.widget.ArrayAdapter
 import com.boiko.app.R
 import com.boiko.app.base.BaseActivity
 import com.boiko.app.data.models.ResponseGoods
-import com.boiko.app.data.models.ResponsePatient
+import com.boiko.app.data.models.ResponseSuppliers
 import com.boiko.app.ui.adapters.GoodsAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.ResponseBody
 import javax.inject.Inject
 
-
 class MainActivity : BaseActivity(), GoodsAdapter.Callback, MainActivityMvpView {
 
     private val goodsAdapter = GoodsAdapter(listOf())
+    private var arrayAdapter: ArrayAdapter<String>? = null
+    private var body: List<ResponseGoods> = emptyList()
+    private var filterList: MutableList<ResponseGoods> = arrayListOf()
+
 
     @Inject
     internal lateinit var presenter: MainActivityPresenter<MainActivityMvpView>
@@ -34,23 +35,31 @@ class MainActivity : BaseActivity(), GoodsAdapter.Callback, MainActivityMvpView 
         presenter.onAttach(this)
         initRecyclerView()
 
-        val adapter = ArrayAdapter.createFromResource(this, R.array.suppliers, android.R.layout.simple_spinner_item)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        suppliers.adapter = adapter
+        presenter.getSuppliers()
 
         suppliers.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                if (position == 0){
-                    presenter.getGoods(0)
-                } else if (position == 1){
-                    presenter.getGoods(1)
-                }
+                val selectedItemText = parentView.getItemAtPosition(position) as String
+                progress.visibility = View.VISIBLE
+                recycler.visibility = View.GONE
+                presenter.getGoods(selectedItemText)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>) {
 
             }
 
+        }
+
+        send_button.setOnClickListener {
+            val list = goodsAdapter.items
+            val listResult : MutableList<ResponseGoods> = arrayListOf()
+            list.forEach{
+                if (it.checked){
+                    listResult.add(it)
+                }
+            }
+            presenter.send(listResult)
         }
     }
 
@@ -78,6 +87,17 @@ class MainActivity : BaseActivity(), GoodsAdapter.Callback, MainActivityMvpView 
                     }
 
                     override fun onQueryTextChange(query: String): Boolean {
+                        filterList.clear()
+                        body.forEach{
+                            if (it.name.contains(query, ignoreCase = true)){
+                                filterList.add(it)
+                            }
+                        }
+                        if (query.isEmpty()){
+                            goodsAdapter.items = body
+                        } else {
+                            goodsAdapter.items = filterList.toList()
+                        }
                         return false
                     }
                 })
@@ -101,8 +121,20 @@ class MainActivity : BaseActivity(), GoodsAdapter.Callback, MainActivityMvpView 
 
     override fun isSuccessfulGetedGoods(body: List<ResponseGoods>) {
         goodsAdapter.items = body
-
+        this.body = body
+        progress.visibility = View.GONE
+        recycler.visibility = View.VISIBLE
     }
 
+    override fun isSuccessfulGetedSuppliers(body: MutableList<ResponseSuppliers>) {
+        val productNameList: List<String> = body.map { it.name }
+        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, productNameList)
+        arrayAdapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        suppliers.adapter = arrayAdapter
+    }
+
+    override fun save(item: ResponseGoods) {
+
+    }
 
 }

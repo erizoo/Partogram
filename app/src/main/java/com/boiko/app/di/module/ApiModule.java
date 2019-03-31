@@ -86,9 +86,7 @@ public class ApiModule {
     @Singleton
     public OkHttpClient provideOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.readTimeout(15, TimeUnit.SECONDS).writeTimeout(15, TimeUnit.SECONDS).connectTimeout(15, TimeUnit.SECONDS);
-        //                модификация запроса
-        //                .addInterceptor()
+        builder.readTimeout(35, TimeUnit.SECONDS).writeTimeout(35, TimeUnit.SECONDS).connectTimeout(35, TimeUnit.SECONDS);
         if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

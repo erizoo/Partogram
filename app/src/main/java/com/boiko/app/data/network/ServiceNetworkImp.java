@@ -1,9 +1,6 @@
 package com.boiko.app.data.network;
 
-import com.boiko.app.data.models.RequestLogin;
-import com.boiko.app.data.models.ResponseGoods;
-import com.boiko.app.data.models.ResponseLogin;
-import com.boiko.app.data.models.ResponsePatient;
+import com.boiko.app.data.models.*;
 import io.reactivex.Observable;
 import retrofit2.Response;
 
@@ -34,8 +31,8 @@ public class ServiceNetworkImp implements ServiceNetwork {
     }
 
     @Override
-    public Observable<Response<List<ResponsePatient>>> checkToken(String userToken) {
-        return apiMethods.checkToken(userToken);
+    public Observable<ResponseTransit> checkToken(String userToken) {
+        return apiMethods.getSuppliers();
     }
 
     @Override
@@ -44,13 +41,12 @@ public class ServiceNetworkImp implements ServiceNetwork {
     }
 
     @Override
-    public Observable<Response<List<ResponseGoods>>> getGoods(int id) {
-        if (id == 0) {
-            return apiMethods.getGoods("HM");
-        } else if (id == 1) {
-            return apiMethods.getGoods("bv");
-        }
+    public Observable<ResponseTransit> getGoods() {
+        return apiMethods.getGoods();
+    }
 
-        return apiMethods.getGoods("HM");
+    @Override
+    public Observable<ResponseTransit> getSuppliers() {
+        return apiMethods.getSuppliers();
     }
 }

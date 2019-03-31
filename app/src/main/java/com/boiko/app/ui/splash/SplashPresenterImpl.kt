@@ -17,12 +17,8 @@ constructor(repositoryManager: RepositoryManager, compositeDisposable: Composite
             repositoryManager.serviceNetwork.checkToken(repositoryManager.servicePrefs.userToken)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {response ->
-                    if (response.isSuccessful){
-                        mvpView.isSuccessfulToken()
-                    } else {
-                        mvpView.badToken()
-                    }
+                .subscribe {
+                    mvpView.isSuccessfulToken()
                 }
         )
     }

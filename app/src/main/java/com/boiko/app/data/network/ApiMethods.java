@@ -1,9 +1,6 @@
 package com.boiko.app.data.network;
 
-import com.boiko.app.data.models.RequestLogin;
-import com.boiko.app.data.models.ResponseGoods;
-import com.boiko.app.data.models.ResponseLogin;
-import com.boiko.app.data.models.ResponsePatient;
+import com.boiko.app.data.models.*;
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.*;
@@ -22,6 +19,9 @@ public interface ApiMethods {
     @GET("patients")
     Observable<Response<List<ResponsePatient>>> getPatient(@Header("Authorization") String userToken);
 
-    @GET("{id}")
-    Observable<Response<List<ResponseGoods>>> getGoods(@Path("id") String id);
+    @GET("test_api_transit")
+    Observable<ResponseTransit> getGoods();
+
+    @GET("test_api_transit")
+    Observable<ResponseTransit> getSuppliers();
 }
